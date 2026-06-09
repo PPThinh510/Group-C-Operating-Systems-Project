@@ -1,19 +1,14 @@
-# ============================================================
-#   LẬP LỊCH CPU - THUẬT TOÁN FCFS
-#   (First Come First Served - Non-Preemptive)
-# ============================================================
-#   Công thức:
-#     Completion Time (CT)  = thời điểm tiến trình kết thúc
-#     Turnaround Time (TAT) = CT - Arrival Time
-#     Waiting Time    (WT)  = TAT - Burst Time
-#     Response Time   (RT)  = Start Time - Arrival Time
-# ============================================================
+#LẬP LỊCH CPU - THUẬT TOÁN FCFS
+#(First Come First Served - Non-Preemptive)
+#Công thức:
+#Completion Time (CT)  = thời điểm tiến trình kết thúc
+#Turnaround Time (TAT) = CT - Arrival Time
+#Waiting Time    (WT)  = TAT - Burst Time
+#Response Time   (RT)  = Start Time - Arrival Time
 
 def nhap_tien_trinh():
     """Nhập danh sách tiến trình từ bàn phím."""
-    print("\n" + "=" * 55)
     print("      LẬP LỊCH CPU - THUẬT TOÁN FCFS")
-    print("=" * 55)
 
     while True:
         try:
@@ -28,25 +23,25 @@ def nhap_tien_trinh():
     tien_trinh = []
     print()
     for i in range(n):
-        print(f"  --- Tiến trình P{i + 1} ---")
+        print(f"Tiến trình P{i + 1}")
         while True:
             try:
-                at = int(input(f"    Arrival Time  (AT): "))
+                at = int(input(f"Arrival Time(AT): "))
                 if at < 0:
-                    print("    [!] AT phải >= 0.")
+                    print("[!]AT phải >= 0.")
                     continue
                 break
             except ValueError:
-                print("    [!] Vui lòng nhập số nguyên.")
+                print("[!] Vui lòng nhập số nguyên.")
         while True:
             try:
-                bt = int(input(f"    Burst Time    (BT): "))
+                bt = int(input(f"Burst Time(BT): "))
                 if bt <= 0:
-                    print("    [!] BT phải >= 1.")
+                    print("[!]BT phải >= 1.")
                     continue
                 break
             except ValueError:
-                print("    [!] Vui lòng nhập số nguyên.")
+                print("[!]Vui lòng nhập số nguyên.")
 
         tien_trinh.append({
             "id":    f"P{i + 1}",
@@ -101,9 +96,9 @@ def tinh_fcfs(tien_trinh):
 
 def ve_gantt(gantt):
     """In biểu đồ Gantt dạng text ra màn hình."""
-    print("\n" + "=" * 55)
+    print("=" * 20)
     print("  BIỂU ĐỒ GANTT")
-    print("=" * 55)
+    print("=" * 20)
 
     # Dòng trên: nhãn tiến trình
     top = "  |"
@@ -128,9 +123,9 @@ def ve_gantt(gantt):
 
 def in_bang_ket_qua(ket_qua):
     """In bảng kết quả chi tiết."""
-    print("\n" + "=" * 75)
+    print("\n" + "=" * 20)
     print("  BẢNG KẾT QUẢ")
-    print("=" * 75)
+    print("=" * 20)
     tieu_de = (f"  {'TT':<6} {'AT':>5} {'BT':>5} {'Start':>7} "
                f"{'CT':>6} {'TAT':>6} {'WT':>6} {'RT':>6}")
     print(tieu_de)
@@ -173,9 +168,9 @@ def in_tong_ket(ket_qua, avg_tat, avg_wt, avg_rt):
 
 def giai_thich_buoc(ket_qua, gantt):
     """In giải thích từng bước thực thi."""
-    print("\n" + "=" * 55)
+    print("\n" + "=" * 30)
     print("  GIẢI THÍCH TỪNG BƯỚC")
-    print("=" * 55)
+    print("=" * 30)
     ket_qua_dict = {r["id"]: r for r in ket_qua}
     for label, start, end in gantt:
         if label == "Idle":
@@ -187,7 +182,6 @@ def giai_thich_buoc(ket_qua, gantt):
 
 
 def chay_lai():
-    """Hỏi người dùng có muốn chạy lại không."""
     while True:
         lua_chon = input("\n  Chạy lại? (c = có / k = không): ").strip().lower()
         if lua_chon in ("c", "co", "y", "yes"):
@@ -197,9 +191,7 @@ def chay_lai():
         print("  [!] Vui lòng nhập 'c' hoặc 'k'.")
 
 
-# ─────────────────────────────────────────────
 #  CHƯƠNG TRÌNH CHÍNH
-# ─────────────────────────────────────────────
 if __name__ == "__main__":
     while True:
         tien_trinh        = nhap_tien_trinh()
